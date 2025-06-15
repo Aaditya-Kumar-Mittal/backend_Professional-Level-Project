@@ -1,0 +1,17 @@
+{
+  "name": "backend_professional-project",
+  "version": "1.0.0",
+  "description": "A backend professional level mega project",
+  "keywords": [
+    "JavaScript",
+    "Nodejs",
+    "Backend"
+  ],
+  "license": "ISC",
+  "author": "Aaditya Kumar Mittal",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
