@@ -5,3 +5,6 @@
 - More organized codes in src folder
 - Dev dependencies are not pushed to Github and are used only for development during production
 - All the dependencies are listed in package.json
+- Must add Prettier to format the code, as in professional grade settings, there may be a lot of conflicts, To achieve so, we use prettier-config-standard.
+  - npm i -D prettier
+  - Configuring .prettierrc file
