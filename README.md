@@ -8,3 +8,6 @@
 - Must add Prettier to format the code, as in professional grade settings, there may be a lot of conflicts, To achieve so, we use prettier-config-standard.
   - npm i -D prettier
   - Configuring .prettierrc file
+- During production mode, we never allow access from anywhere during Mongodb Atlas Setup in Network Access
+- Always keep the code for database access in try-catch block. This is for security reasons.
+- Database is always in another continent. Async and await is must.
