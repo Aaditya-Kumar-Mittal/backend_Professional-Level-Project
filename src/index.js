@@ -1,5 +1,14 @@
+// require("dotenv").config({ path: "./env" });
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { DB_NAME } from "./constants.js";
+import connectDatabase from "./database/db.js";
+
+dotenv.config({ path: "./env" });
+
+connectDatabase();
+
+/*
 import express from "express";
 
 const app = express();
@@ -23,3 +32,4 @@ const app = express();
         throw error;
     }
 })();
+*/

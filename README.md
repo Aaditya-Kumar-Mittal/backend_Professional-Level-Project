@@ -11,3 +11,11 @@
 - During production mode, we never allow access from anywhere during Mongodb Atlas Setup in Network Access
 - Always keep the code for database access in try-catch block. This is for security reasons.
 - Database is always in another continent. Async and await is must.
+- As early as possible in your application, import and configure dotenv.
+- "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+  import dotenv from "dotenv";
+  import mongoose from "mongoose";
+  import { DB_NAME } from "./constants.js";
+  import connectDatabase from "./database/db.js";
+
+dotenv.config({ path: "./env" });
