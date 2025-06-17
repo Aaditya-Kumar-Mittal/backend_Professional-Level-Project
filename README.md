@@ -1,5 +1,7 @@
 # backend_Professional-Level-Project
 
+Shields for Express Nodejs Cookie-parser mongoose mongodb cors nodemon
+
 - Folders are not pushed to Github so we make .gitkeep files to push and keep track of empty folders
 - Create a .env file to store the environment variables. You can use online gitignore generators for that.
 - More organized codes in src folder
@@ -19,3 +21,15 @@
   import connectDatabase from "./database/db.js";
 
 dotenv.config({ path: "./env" });
+
+- CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+  - var corsOptions = {
+    origin: 'http://example.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    }
+
+app.use(
+express.json({
+limit: "16kb", // This can be adjusted based on your needs. This limits the size of the JSON body to 16KB.
+})
+);

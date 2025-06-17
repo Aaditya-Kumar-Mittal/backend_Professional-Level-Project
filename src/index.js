@@ -6,7 +6,20 @@ import connectDatabase from "./database/db.js";
 
 dotenv.config({ path: "./env" });
 
-connectDatabase();
+connectDatabase()
+  .then(() => {
+
+    // Listen to the Application
+    app.listen(process.env.PORT || 8000).then(() => {
+      console.log(`Server is running on port ${process.env.PORT || 8000}`);
+    }).catch((error) => {
+      console.error("Error starting the server:", error);
+    });
+    
+  })
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error);
+  });
 
 /*
 import express from "express";
