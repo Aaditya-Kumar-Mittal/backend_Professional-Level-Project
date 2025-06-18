@@ -1,6 +1,6 @@
 # backend_Professional-Level-Project
 
-Shields for Express Nodejs Cookie-parser mongoose mongodb cors nodemon
+Shields for Express Nodejs Cookie-parser mongoose mongodb cors nodemonn cookie-parser mongoose-aggregate-paginate-v2 jwt bcrypt dotenv
 
 - Folders are not pushed to Github so we make .gitkeep files to push and keep track of empty folders
 - Create a .env file to store the environment variables. You can use online gitignore generators for that.
@@ -156,3 +156,97 @@ router.get(
 
 - Centralize the error handling and ap response
 - Error class has constructor with code and message
+
+Things to learn next -> System Design, Database Design, Optimize Code, Debugging
+
+- mongoose-aggregate-paginate-v2 : A page based custom aggregate pagination library for Mongoose with customizable labels.
+
+```js
+Adding the plugin to a schema,
+
+var mongoose = require("mongoose");
+var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
+
+var mySchema = new mongoose.Schema({
+  /* your schema definition */
+});
+
+mySchema.plugin(aggregatePaginate);
+
+var myModel = mongoose.model("SampleModel", mySchema);
+and then use model aggregatePaginate method,
+
+// as Promise
+
+var myModel = require("/models/samplemodel");
+
+const options = {
+  page: 1,
+  limit: 10,
+};
+
+var myAggregate = myModel.aggregate();
+myModel
+  .aggregatePaginate(myAggregate, options)
+  .then(function (results) {
+    console.log(results);
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
+// as Callback
+
+var myModel = require('/models/samplemodel');
+
+const options = {
+    page: 1,
+    limit: 10
+};
+
+var myAggregate = myModel.aggregate();
+myModel.aggregatePaginate(myAggregate, options, function(err, results) {
+ if(err) {
+  console.err(err);
+ else {
+     console.log(results);
+ }
+})
+// Execute pagination from aggregate
+const myModel = require('/models/samplemodel');
+
+const options = {
+    page: 1,
+    limit: 10
+};
+
+const myAggregate = myModel.aggregate();
+myAggregate.paginateExec(options, function(err, results) {
+ if(err) {
+  console.err(err);
+ else {
+     console.log(results);
+ }
+})
+
+```
+
+- jwt.io -> Generate and Verify Tokes, Have cryptographic algorihm, headers, paylod(data) which is encrypted, verification algorith, amd a SECRET KEy
+- JWT is a bearer token, the one who bears it, is the person who is allowed to access the resource.
+- 
+Open your terminal or command prompt.
+Run the following Node.js script to generate a random string:
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+This command uses the crypto module in Node.js to generate a random sequence of 32 bytes and then converts it to a hexadecimal string.
+
+Copy the generated string.
+
+Open your .env file and set the JWT secret key:
+
+JWT_SECRET=paste-the-generated-string-here
+Replace paste-the-generated-string-here with the string you copied.
+
+Save the changes to your .env file.
+
+Now, you have a securely generated JWT secret key. Remember to keep this key confidential and don't share it publicly. If needed, you can regenerate the key and update it in your .env file.
+
+Made Access and Refresh Tokens
