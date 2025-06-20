@@ -77,10 +77,6 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ---
 
-Sure! Here's a professional and segmented `README.md` with `###`-level sections for all the concepts and tools you've listed. This is ideal for a production-grade Express.js backend and designed to serve as high-quality documentation in your repository.
-
----
-
 ## ✅ What is `asyncHandler`?
 
 In Express.js, asynchronous route handlers that throw errors (e.g., failed DB operations) don’t automatically trigger the error-handling middleware. That’s where `asyncHandler` comes in.
@@ -314,10 +310,6 @@ Create `.prettierrc`:
 
 ---
 
-Here's a clean and professional documentation section in your preferred format:
-
----
-
 ### Production Grade Multer and Cloudinary Setup
 
 This section explains how to handle file uploads in a **production-grade** Node.js application using **Multer** for local storage and **Cloudinary** for cloud storage. The system first stores the uploaded file temporarily on the server and then uploads it to Cloudinary. This approach offers better fault tolerance, allowing for retries in case of upload errors.
@@ -468,6 +460,132 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 
 ---
 
+## Standardization and HTTP Headers
+
+This section provides a comprehensive overview of web standards around HTTP, including the purpose of headers, common types, security practices, CORS configuration, HTTP methods with examples, and standard response codes.
+
+### 🔗 URL, URI, and URN — What's the Difference?
+
+| Term    | Full Form                   | Description                                                | Example                                      |
+| ------- | --------------------------- | ---------------------------------------------------------- | -------------------------------------------- |
+| **URL** | Uniform Resource Locator    | Specifies the **location** of a resource                   | `https://example.com/index.html`             |
+| **URI** | Uniform Resource Identifier | Identifies a resource either by name or location (or both) | `https://example.com`, `urn:isbn:0451450523` |
+| **URN** | Uniform Resource Name       | Names the resource **without** indicating its location     | `urn:isbn:0451450523`                        |
+
+### 🧾 HTTP Headers Metadata
+
+Headers are key-value pairs sent with HTTP requests/responses. They provide metadata to help the client or server understand how to process the data.
+
+They are used for:
+
+- 🔐 Authentication
+- ⚙️ Managing state
+- 🧠 Caching
+- 🧩 Content Negotiation
+
+#### 📦 Deprecated `X-` Prefix
+
+Before 2012, custom headers often started with `X-` (e.g. `X-Custom-Token`). Since then, the standard has deprecated the use of `X-` prefixes in favor of meaningful names.
+
+**Example:**
+
+```http
+X-Powered-By: Express  // ❌ Deprecated pattern
+Server: Express         // ✅ Modern pattern
+```
+
+### 🔀 Types of HTTP Headers
+
+- **Request Headers**: Sent by the client (browser or Postman).
+- **Response Headers**: Sent by the server (Express, Django, etc.).
+- **Representation Headers**: Describe the encoding or compression.
+- **Payload Headers**: Describe the body data being transferred.
+
+### 🧰 Most Common HTTP Headers
+
+| Header          | Description                                                                             |
+| --------------- | --------------------------------------------------------------------------------------- |
+| `Accept`        | Tells the server what content types the client can process. Example: `application/json` |
+| `User-Agent`    | Identifies the application making the request (e.g., Chrome, Postman)                   |
+| `Authorization` | Carries credentials for authentication (e.g., Bearer Token)                             |
+| `Content-Type`  | Describes the format of the request/response body                                       |
+| `Cookie`        | Contains stored session or preference information                                       |
+| `Cache-Control` | Controls how caching is handled by the browser or proxy                                 |
+
+### 🌐 CORS: Cross-Origin Resource Sharing
+
+Cross-Origin Resource Sharing allows restricted resources on a web page to be requested from another domain.
+
+| Header                             | Purpose                                      |
+| ---------------------------------- | -------------------------------------------- |
+| `Access-Control-Allow-Origin`      | Specifies the origin(s) allowed              |
+| `Access-Control-Allow-Credentials` | Allows sending of cookies and auth headers   |
+| `Access-Control-Allow-Methods`     | Lists allowed HTTP methods (e.g., GET, POST) |
+
+### 🛡️ Security Headers
+
+| Header                         | Purpose                                             |
+| ------------------------------ | --------------------------------------------------- |
+| `Cross-Origin-Embedder-Policy` | Prevents unauthorized resources from being embedded |
+| `Cross-Origin-Opener-Policy`   | Isolates browsing context for improved security     |
+| `Content-Security-Policy`      | Prevents XSS attacks by restricting sources         |
+| `X-XSS-Protection`             | Activates browser’s XSS protection mechanisms       |
+
+### ⚙️ HTTP Methods with Real-Life Examples
+
+| Method    | Description                | Example                                       |
+| --------- | -------------------------- | --------------------------------------------- |
+| `GET`     | Retrieve a resource        | `GET /users` — Fetch all users                |
+| `HEAD`    | Fetch only headers         | `HEAD /users` — Get metadata only             |
+| `OPTIONS` | Discover supported methods | `OPTIONS /users` — Returns: GET, POST         |
+| `TRACE`   | Debug, echoes back request | Rarely used in modern APIs                    |
+| `DELETE`  | Remove a resource          | `DELETE /users/123` — Delete user with ID 123 |
+| `PUT`     | Replace a resource         | `PUT /users/123` with full user object        |
+| `POST`    | Create a new resource      | `POST /users` with user data                  |
+| `PATCH`   | Modify part of a resource  | `PATCH /users/123` with name update           |
+
+**Example (Express.js POST endpoint):**
+
+```js
+app.post("/users", (req, res) => {
+  const { name, email } = req.body;
+  // Save to DB
+  res.status(201).json({ message: "User created" });
+});
+```
+
+### 📊 HTTP Response Status Codes
+
+Status codes indicate the result of an HTTP request. They are grouped into five categories:
+
+| Class | Description                                     |
+| ----- | ----------------------------------------------- |
+| `1xx` | Informational (e.g., 100 Continue)              |
+| `2xx` | Success (e.g., 200 OK, 201 Created)             |
+| `3xx` | Redirection (e.g., 307 Temporary Redirect)      |
+| `4xx` | Client Errors (e.g., 404 Not Found)             |
+| `5xx` | Server Errors (e.g., 500 Internal Server Error) |
+
+#### ✅ Common Status Codes
+
+| Code  | Meaning               |
+| ----- | --------------------- |
+| `100` | Continue              |
+| `102` | Processing            |
+| `200` | OK                    |
+| `201` | Created               |
+| `202` | Accepted              |
+| `307` | Temporary Redirect    |
+| `308` | Permanent Redirect    |
+| `400` | Bad Request           |
+| `401` | Unauthorized          |
+| `402` | Payment Required      |
+| `404` | Not Found             |
+| `500` | Internal Server Error |
+| `504` | Gateway Timeout       |
+
+---
+
 ## ⚠️ Notes for Production
 
 - ❌ Never push `.env` or secrets — use `.gitignore` to exclude them.
@@ -494,6 +612,7 @@ To take your backend development to the next level:
 - [Cloudinary Docs](https://cloudinary.com/documentation)
 - [Mongoose Docs](https://mongoosejs.com/)
 - [Express Docs](https://expressjs.com/)
+- [Multer Docs](https://github.com/expressjs/multer)
 
 ---
 
