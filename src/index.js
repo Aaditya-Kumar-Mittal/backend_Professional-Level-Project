@@ -3,19 +3,22 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { DB_NAME } from "./constants.js";
 import connectDatabase from "./database/db.js";
+import { app } from "./app.js";
 
 dotenv.config({ path: "./env" });
 
 connectDatabase()
   .then(() => {
-
     // Listen to the Application
-    app.listen(process.env.PORT || 8000).then(() => {
-      console.log(`Server is running on port ${process.env.PORT || 8000}`);
-    }).catch((error) => {
-      console.error("Error starting the server:", error);
+    const PORT = process.env.PORT || 8000;
+
+    app.listen(PORT, () => {
+      console.log(`✅ Server is running on port ${PORT}`);
     });
-    
+
+    app.on("error", (error) => {
+      console.error("❌ Error in Express app:", error);
+    });
   })
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
