@@ -11,6 +11,8 @@
  * @returns {Function} - A wrapped Express middleware with error forwarding
  */
 const asyncHandler = (requestHandler) => {
+
+  // Since this is a higher-order function, it returns a function
   return (req, res, next) => {
     // Wrap the async function call in Promise.resolve to catch any thrown error
     Promise.resolve(requestHandler(req, res, next)).catch((error) => {

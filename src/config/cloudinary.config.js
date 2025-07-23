@@ -1,8 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
-
 import fs from "fs";
 
-// Configuuration for cloudinary that gives us permission to upload the files
+// Configuration for cloudinary that gives us permission to upload the files
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -20,7 +19,12 @@ const uploadOnCloudinary = async (localFilePath) => {
     });
 
     // File has been successfully uploaded
-    console.log("File is uploaded on cloudinary!", response.url);
+    // console.log("File is uploaded on cloudinary!", response.url);
+    // console.log(response);
+
+    // Removes the file even on successfully upload
+    // Delete the local file from the server synchronously (i.e., wait until it is removed)
+    fs.unlinkSync(localFilePath);
 
     return response;
   } catch (error) {

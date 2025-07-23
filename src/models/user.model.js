@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
 
 // Using mongoose hooks, we use these plugins
 
@@ -8,21 +8,23 @@ const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: [true, "Username is required!"],
       unique: true,
+      lowercase: true,
       trim: true,
       index: true, // For optimized search in MongoDB, set the index filed to true for that particular field
     },
     email: {
       type: String,
-      required: true,
+      required: [true, "Email is required!"],
       unique: true,
       trim: true,
       index: true,
     },
     fullname: {
       type: String,
-      required: true,
+      required: [true, " Fullname is required!"],
+      trim: true,
       index: true,
     },
     avatar: {
@@ -49,13 +51,15 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Using a mongoose hook here which means
+// before saving the password hash it
 UserSchema.pre("save", async function (next) {
   // Avoid usuing arrow function here to maintain the context of 'this'
   // Whenver we are saving, take the password field encrypt it and save it
 
   if (!this.isModified("password")) return next();
   // Hash password only if password field is modified, to avoid hashing it again and again on every save
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
