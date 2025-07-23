@@ -558,13 +558,13 @@ app.post("/users", (req, res) => {
 
 Status codes indicate the result of an HTTP request. They are grouped into five categories:
 
-| Class | Description                                     |
-| ----- | ----------------------------------------------- |
-| `1xx` | Informational (e.g., 100 Continue)              |
-| `2xx` | Success (e.g., 200 OK, 201 Created)             |
-| `3xx` | Redirection (e.g., 307 Temporary Redirect)      |
-| `4xx` | Client Errors (e.g., 404 Not Found)             |
-| `5xx` | Server Errors (e.g., 500 Internal Server Error) |
+| Class | Description                                                                   |
+| ----- | ----------------------------------------------------------------------------- |
+| `1xx` | Informational (e.g., 100 Continue)                                            |
+| `2xx` | Success (e.g., 200 OK, 201 Created)                                           |
+| `3xx` | Redirection (e.g., 307 Temporary Redirect)                                    |
+| `4xx` | Client Errors (e.g., 404 Not Found) (Client Did Not Send Correct Information) |
+| `5xx` | Server Errors (e.g., 500 Internal Server Error)                               |
 
 #### ✅ Common Status Codes
 

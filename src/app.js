@@ -41,6 +41,7 @@ import userRouter from "./routes/user.routes.js";
 // Routes Declarations
 
 // Standard Practice of Defining the Routes /api/version/prefix
+// You are importing routes using a middleware
 app.use("/api/v1/users", userRouter);
 
 export { app };
